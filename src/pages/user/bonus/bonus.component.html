@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>我的积分</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="grid-basic-page">
+
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="currentChoice">
+            <ion-segment-button value="pay">
+                积分兑换
+            </ion-segment-button>
+            <ion-segment-button value="earn">
+                获取积分
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+    <div class="myBonus">
+        <h2><ion-icon name="ios-trophy-outline"></ion-icon>我的积分：103</h2>
+    </div>
+
+    <div [ngSwitch]="currentChoice">
+        <div *ngSwitchCase = "'earn'">
+            <h3>每日任务</h3>
+
+            <ion-grid>
+                <ion-row align-items-top>
+                    <ion-col col-3 offset-2>
+                        <div class="dailyIcon">
+                            <ion-icon name="md-checkbox-outline"></ion-icon>
+                        </div>
+                        <p class="bonus">+10积分</p>
+                        <p>提交每日作业</p>
+                    </ion-col>
+                    <ion-col col-3 offset-2>
+                        <div class="dailyIcon">
+                            <ion-icon name="md-share"></ion-icon>
+                        </div>
+                        <p class="bonus">+10积分</p>
+                        <p>分享至朋友圈</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <h3>其他任务</h3>
+
+            <ion-list inset>
+                <ion-item>
+                    <ion-icon name="ios-calendar-outline"></ion-icon>
+                    当月累计提交作业22次
+                    <div class="rightBonus bonus">
+                        +100积分
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="md-person-add"></ion-icon>
+                    成功邀请一位好友
+                    <div class="rightBonus bonus">
+                        +1000积分
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div *ngSwitchCase = "'pay'">
+            <h3>兑换课程</h3>
+            <ion-list inset>
+                <ion-item (click)="exchange(i)" *ngFor="let item of exchangeItems let i = index" >
+                    <ion-icon name="ios-card-outline"></ion-icon>
+                    {{item.day}}天有效期
+                    <div class="rightBonus bonus">
+                        {{item.bonus}}积分
+                    </div>
+                </ion-item>
+                <!--<ion-item (click)="exchane()">
+                    <ion-icon name="ios-card-outline"></ion-icon>
+                    兑换3天有效期
+                    <div class="rightBonus bonus">
+                        800积分
+                    </div>
+                </ion-item>
+                <ion-item (click)="exchane()">
+                    <ion-icon name="ios-card-outline"></ion-icon>
+                    兑换7天有效期
+                    <div class="rightBonus bonus">
+                        1600积分
+                    </div>
+                </ion-item>
+                <ion-item (click)="exchane()">
+                    <ion-icon name="ios-card-outline"></ion-icon>
+                    兑换16天有效期
+                    <div class="rightBonus bonus">
+                        3200积分
+                    </div>
+                </ion-item>
+                <ion-item (click)="exchane()">
+                    <ion-icon name="ios-card-outline"></ion-icon>
+                    兑换35天有效期
+                    <div class="rightBonus bonus">
+                        6400积分
+                    </div>
+                </ion-item>
+                <ion-item (click)="exchane()">
+                    <ion-icon name="ios-card-outline"></ion-icon>
+                    兑换80天有效期
+                    <div class="rightBonus bonus">
+                        12800积分
+                    </div>
+                </ion-item>-->
+            </ion-list>
+        </div>
+    </div>
+
+</ion-content>

@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>课前测试</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="grid-basic-page">
+    <ion-slides pager (ionSlideWillChange)="slideChange()">
+
+        <!--单词题-->
+        <ion-slide *ngFor="let question of wordQuestions let i = index">
+
+            <h2>选出单词意思</h2>
+
+            <ion-list radio-group [(ngModel)]="radioChoices[i]">
+                <ion-list-header>
+                    {{question.word}} ({{i+1}}/10)
+                </ion-list-header>
+
+                <ion-item>
+                    <ion-label>A.{{question.choices[0]}}</ion-label>
+                    <ion-radio value="A"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>B.{{question.choices[1]}}</ion-label>
+                    <ion-radio value="B"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>C.{{question.choices[2]}}</ion-label>
+                    <ion-radio value="C"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>D.{{question.choices[3]}}</ion-label>
+                    <ion-radio value="D"></ion-radio>
+                </ion-item>
+            </ion-list>
+        </ion-slide>
+
+        <!--听力题-->
+        <ion-slide *ngFor="let question of listenQuestions let i = index">
+            <h2>根据语音选出答案</h2>
+
+            <ion-list radio-group [(ngModel)]="radioChoices[i+6]">
+                <ion-list-header>
+                    <div>
+                        <button ion-button (click)="playClick(i)">
+                            <ion-icon name="play"></ion-icon>
+                        </button>
+                        ({{i+7}}/10)
+                    </div>
+                </ion-list-header>
+
+                <ion-item>
+                    <ion-label>A.{{question.choices[0]}}</ion-label>
+                    <ion-radio value="A"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>B.{{question.choices[1]}}</ion-label>
+                    <ion-radio value="B"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>C.{{question.choices[2]}}</ion-label>
+                    <ion-radio value="C"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>D.{{question.choices[3]}}</ion-label>
+                    <ion-radio value="D"></ion-radio>
+                </ion-item>
+            </ion-list>
+        </ion-slide>
+        <!--提交答案-->
+        <ion-slide>
+            <h2>答题结束啦！</h2>
+            <button ion-button round (click)="submitAnswer()">确认提交</button>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

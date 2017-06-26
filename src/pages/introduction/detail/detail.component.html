@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>课程介绍</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="grid-basic-page">
+    <ion-card>
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="{{course.headImg}}">
+            </ion-avatar>
+            <h2>{{course.courseTitle}}</h2>
+            <p>{{course.courseSubtitle}}</p>
+        </ion-item>
+
+        <img src="{{course.courseImg}}">
+
+        <ion-card-content>
+            <p>{{course.courseDescription}}</p>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col align-self-center text-center>
+                <ion-note>
+                    {{course.date}}
+                </ion-note>
+            </ion-col>
+            <ion-col align-self-center text-center>
+                <ion-note color="primary">
+                    <ion-icon name="ribbon"></ion-icon>
+                    评分：9.9/10
+                </ion-note>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-card>
+        <ion-list inset>
+            <ion-list-header>
+                <h1>课程列表</h1>
+            </ion-list-header>
+            <button ion-item *ngFor="let item of items let i = index" (click)="itemSelected(item)">
+                <span class="sectionNum">第{{item.chapterNum}}节</span>{{ item.chapterTitle }}
+            </button>
+        </ion-list>
+    </ion-card>
+    
+</ion-content>

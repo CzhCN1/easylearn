@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>学员信息</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="grid-basic-page">
+    <ion-card>
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="{{userInfo.headImg}}">
+            </ion-avatar>
+            <h1>会员号：{{userInfo.memberId}}</h1>
+        </ion-item>
+
+        <ion-item>
+            <h1>所学课程：</h1>
+            <ion-list >
+                <!--<ion-list-header> 所学课程： </ion-list-header> -->
+                <button ion-item *ngFor="let item of this.ownCourse" (click)="itemSelected(item)">
+                    {{item.courseName}}
+                </button> 
+            </ion-list>
+        </ion-item>
+
+        <ion-item>
+            <h1>课程有效期：2099-12-31</h1>
+        </ion-item>
+
+        <ion-item>
+            <h1>我的积分：{{ownBonus.bonus}}</h1>
+            <button ion-button (click)="gotoBonus()">积分商城</button>
+        </ion-item>
+    </ion-card>
+
+</ion-content>

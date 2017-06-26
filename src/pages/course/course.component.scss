@@ -1,0 +1,86 @@
+course {
+    .scroll-content {
+        background-color: rgb(248, 248, 248);
+    }
+    h1 {
+        color: rgb(64, 187, 219)
+    }
+
+    .playButton {
+        background-color: rgb(64, 187, 219);
+        width: 10rem;
+        height: 3rem;
+        border-radius: 5px;
+        margin: 2rem 5rem;
+        position: relative;
+
+        ion-icon {
+            color: #FFF;
+            font-size: 2.0em;
+            text-indent: 1.3rem;
+            visibility: hidden;
+        }
+        
+        ion-avatar {
+            position: absolute;
+            top: -0.7rem;
+            left: -5rem;
+        }
+
+        .duration {
+            display: inline-block;
+            height: 3rem;
+            line-height: 3rem;
+            color: #FFF;
+            vertical-align: top;
+            text-indent: 1em;
+        }
+    }
+    .playButton:after {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0.5rem;
+        left: -1.7rem;
+        border: solid 1rem;
+        border-color: transparent rgb(64, 187, 219) transparent transparent ;
+        font-size: 0;
+    }
+
+    .audioUnit {
+        border: 2px solid #488aff;
+
+        .soundImg {
+            display: inline-block;
+            vertical-align: middle;
+            height: 22px;
+            width: 28px;
+            margin-left: -5px;
+            margin-right: 3px;
+            background-image: url(../assets/img/sound1.png);
+            background-size: 19px 17px;
+            background-repeat: no-repeat;
+            background-position: 7px 1px;
+        }
+        .soundImg1 {
+            display: inline-block;
+            vertical-align: middle;
+            height: 22px;
+            width: 31px;
+            margin-left: -5px;
+            margin-right: 0;
+            background-image: url(../assets/img/sound2.gif);
+            background-size: 22px 21px;
+            background-repeat: no-repeat;
+            background-position: 7px -2px;
+        }
+    }
+
+    .playing {
+        
+        ion-icon {
+            visibility: visible;
+        }
+    }
+}
