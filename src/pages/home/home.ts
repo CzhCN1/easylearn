@@ -36,8 +36,8 @@ export class HomePage {
   }
 
   share() {
-    console.log("ajax get");
-    this.ajax.get("/getQuestions").then(data=>{console.log(data)});
+    console.log("ajax post");
+    this.ajax.post("/exchangeBonus",{signature:"czh"}).then(data=>{console.log(data)});
     // wx.getNetworkType({
     //   success: function (res) {
     //     var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi

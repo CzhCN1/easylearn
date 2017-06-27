@@ -1,19 +1,24 @@
 import { Component, Input } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
+import { AjaxService } from '../../../services/ajax.service';
+
 @Component({
     selector: 'bonus',
-    templateUrl: 'bonus.component.html'
+    templateUrl: 'bonus.component.html',
+    providers: [AjaxService]
 })
 export class Bonus {
 
     currentChoice: String;
     exchangeItems: Object[];
+    ownBonus: any;
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public alertCtrl: AlertController
+        public alertCtrl: AlertController,
+        public ajax: AjaxService
     ) {
         this.currentChoice = 'pay';
         this.exchangeItems = [
@@ -23,6 +28,11 @@ export class Bonus {
             {day: 35, bonus: 6400},
             {day: 80, bonus: 12800}
         ];
+
+        this.ownBonus = {};
+        this.ajax.get("/getUserBonus").then(data=>{
+            this.ownBonus = data;
+        });
     }
 
     exchange(index) {

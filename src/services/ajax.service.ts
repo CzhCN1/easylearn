@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -29,10 +29,13 @@ export class AjaxService {
 
     post(URL,dataObj) {
         let header = new Headers();
-        header.append('Content-Type', 'application/x-www-form-urlencoded');
-        let pramas = JSON.stringify(dataObj)
+        header.append('Content-Type', 'application/json');
+        let pramas = JSON.stringify(dataObj);
+        // let pramas = "signature=czh&age=18";
+        console.log(pramas);
+        let options = new RequestOptions({headers:header});
         return new Promise((resolve, reject) => {
-        this.http.post(URL, pramas, header)
+        this.http.post(URL, pramas, options)
             .map(res => res.json())
             .subscribe(data => {
                 resolve(data);
