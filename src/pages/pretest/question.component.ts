@@ -1,5 +1,5 @@
-import { Component, enableProdMode, Input } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { Component, enableProdMode, Input, ViewChild } from '@angular/core';
+import { NavController, NavParams, Events, Slides } from 'ionic-angular';
 
 import { TestResult } from './testResult.component';
 
@@ -10,6 +10,8 @@ enableProdMode();
   templateUrl: 'question.component.html'
 })
 export class Question {
+  @ViewChild('slides') slides: Slides;
+
   num: number = 1;
   wordQuestions: Object[];
   answer: String[];
@@ -64,5 +66,23 @@ export class Question {
     this._audio.src = this.listenQuestions[index].src;
     this.curSrc = this.listenQuestions[index].src;
     this._audio.play();
+  }
+
+  gotoLeft() {
+    console.log("left");
+    console.log(this.slides.slidePrev);
+    this.slides.slidePrev();
+    // if(!this.slides.isBeginning){
+    //   console.log("not begin");
+    //   this.slides.slidePrev();
+    // }
+  }
+
+  gotoRight() {
+    console.log("right");
+    this.slides.slideNext();
+    // if(!this.slides.isEnd){
+    //   this.slides.slideNext();
+    // }
   }
 }

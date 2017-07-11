@@ -1,92 +1,56 @@
 import { Component, Input } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
+import { AjaxService } from '../../services/ajax.service';
+
+declare var wx: any;
 
 @Component({
     selector: 'course',
-    templateUrl: 'course.component.html'
+    templateUrl: 'course.component.html',
+    providers: [AjaxService]
 })
 export class Course {
     course: Object;
     item: Object;
-    detail: Object[];
+    detail: any;
     curId: Number;
     curSrc: String;
     _audio: any;
     durationList: String[] = [];
+    startTime: any;
+    recordBtnWord: String = "按住提交作业";
 
     constructor(
         public navCtrl: NavController,
-        public navParams: NavParams
+        public navParams: NavParams,
+        public ajax: AjaxService,
+        public alertCtrl: AlertController,
     ) {
         this._audio = document.createElement('audio');
         this._audio.autoplay = false;
         this._audio.preload = "auto";
         this._audio.onended = this.end;
-
-
-        this.preload();
-
-        this.course = {
-            courseTitle: "【说乎】试听课",
-            subTitle: "Jinx老师——前新东方首席口语名师",
-            headImg: "assets/img/head.png",
-            courseImg: "http://i1.hdslb.com/u_user/19668ac7dcf075d2a76c9b144dee7780.jpg",
-            description: "20天，让你的日语听得懂，说得出こんにちは！",
-            date: "2017-5-8"
-        };
+        
+        this.course = navParams.get('course');
         this.item = navParams.get('item');
+        
+        this.detail = [];
 
-        this.detail = [
-            {
-                title: '今日主题：机场',
-                img: 'assets/img/course1.jpg',
-                mainAudio: 'http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8684.mp3',
-                audioContent: [
-                    {
-                        content: "word [wɜ:d] n.单词;话语;诺言;消息",
-                        audioSrc: "http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8685.mp3"
-                    },
-                    {
-                        content: "word [wɜ:d] n.单词;话语;诺言;消息",
-                        audioSrc: "http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8686.mp3"
-                    }
-                ]
-            },
-            {
-                title: '万能句式',
-                img: 'assets/img/course1.jpg',
-                mainAudio: 'http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8687.mp3',
-                audioContent: [
-                    {
-                        content: "word [wɜ:d] n.单词;话语;诺言;消息",
-                        audioSrc: "http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8688.mp3"
-                    },
-                    {
-                        content: "word [wɜ:d] n.单词;话语;诺言;消息",
-                        audioSrc: "http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8689.mp3"
-                    }
-                ]
-            },
-            {
-                title: '必背单词',
-                img: 'assets/img/course1.jpg',
-                mainAudio: 'http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8680.mp3',
-                audioContent: [
-                    {
-                        content: "word [wɜ:d] n.单词;话语;诺言;消息",
-                        audioSrc: "http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8681.mp3"
-                    }
-                ]
-            }
-        ];
+        this.ajax.get('/getCourseDetail?chapterNum='+this.item["chapterNum"]).then(data=>{
+            console.log(data);
+            this.detail = data;
+            //预加载元数据
+            this.preload();
+        });
+        
     }
 
-
-    // play(audioItem) {
-    //     this.curId = this.allTracksStrArr.indexOf(audioItem);
-    //     this.curSrc = audioItem;
-    // }
+    //离开页面时关掉正在播放的语音
+    ionViewWillLeave(){
+        console.log("leave");
+        this.curSrc = "";
+    }
 
     playClick(audioItem) {
         //暂停
@@ -111,12 +75,10 @@ export class Course {
     }
 
     preload(){
-        var srcList = [
-            'http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8687.mp3',
-            'http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8687.mp3',
-            'http://jsdx.sc.chinaz.com/Files/DownLoad/sound1/201705/8687.mp3'
-        ];
-
+        var srcList = [];
+        for(let i = 0; i < this.detail.length; i++){
+            srcList.push(this.detail[i].audioPath);
+        }
         var tempAudio = document.createElement('audio');
         tempAudio.autoplay = false;
         tempAudio.preload = "auto";
@@ -132,5 +94,72 @@ export class Course {
                 tempAudio.src = srcList.pop();
             }
         }
+    }
+
+    preCourse(){
+        var item = this.item;
+        this.ajax.get('/getPreviousChapter?courseNum='+item["courseNum"]+'&chapterNum=' + item["chapterNum"]).then(data=>{
+            console.log(data);
+            var prev = data;
+            if(prev["chapterNum"]){
+                this.navCtrl.push(Course,{
+                    item: prev,
+                    course: this.course
+                });
+            }else{
+                console.log("没有前一节课程");
+            }
+        });
+    }
+
+    recodStart($event){
+        $event.preventDefault();
+        console.log("record start");
+        var date = new Date();
+        this.startTime = date.getTime();
+
+        this.recordBtnWord = "录音中";
+        //开始录音
+        wx.startRecord();
+        return false;
+    }
+
+    recordEnd(e){
+        this.recordBtnWord = "按住提交作业";
+        console.log("record end");
+        var date = new Date();
+        var endTime = date.getTime();
+        var recordTime = (endTime - this.startTime)/1000;
+        
+        var self = this;
+
+        wx.stopRecord({
+            success: function (res) {
+                var localId = res.localId;
+                if(recordTime < 5){
+                    alert("录音不足5秒");
+                }else{
+                    var postData = {};
+                    var date = new Date();
+                    postData["chapterNum"] = self.item["chapterNum"];
+                    postData["timetamp"] = date.getTime();
+                    postData["localId"] = localId; 
+
+                    self.ajax.post("/uploadVoice",postData).then(data=>{
+                        let alert  = self.alertCtrl.create({
+                            title: "成功",
+                            subTitle: "作业提交成功！",
+                            buttons: ["ok"]
+                        });
+                        alert.present();
+                    })
+
+                    wx.playVoice({
+                        localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                    });
+                }
+            }
+        });
+        
     }
 }

@@ -31,7 +31,8 @@ export class Detail {
     itemSelected(item) {
         console.log(item);
         this.navCtrl.push(Course, {
-            item: item
+            item: item,
+            course: this.course
         });
     }
 }

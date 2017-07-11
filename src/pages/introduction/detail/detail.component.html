@@ -41,7 +41,7 @@
                 <h1>课程列表</h1>
             </ion-list-header>
             <button ion-item *ngFor="let item of items let i = index" (click)="itemSelected(item)">
-                <span class="sectionNum">第{{item.chapterNum}}节</span>{{ item.chapterTitle }}
+                <span class="sectionNum">第{{i+1}}节</span>{{ item.chapterTitle }}
             </button>
         </ion-list>
     </ion-card>

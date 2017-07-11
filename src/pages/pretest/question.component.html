@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="grid-basic-page">
-    <ion-slides pager (ionSlideWillChange)="slideChange()">
+    <ion-slides #slides pager (ionSlideWillChange)="slideChange()">
 
         <!--单词题-->
         <ion-slide *ngFor="let question of wordQuestions let i = index">

@@ -9,23 +9,23 @@
         <img src="assets/img/tipsTitle.gif">
         <img src="assets/img/tips.gif">
         <ion-card-content>
-            <h1>课前先复习昨日的内容吧！>></h1>
+            <h1 (click)="preCourse()" class="previous">复习昨日的内容>> </h1>
         </ion-card-content>
     </ion-card>
 
     <ion-card>
         <ion-card-content>
             <ion-item *ngFor="let section of detail let sectionIndex = index">
-                <h1>{{section.title}}</h1>
-                <img src={{section.img}}>
+                <h1>{{section.partTitle}}</h1>
+                <img src={{section.imgUrl}} *ngIf="section.imgUrl">
             
-                <div class="playButton" [ngClass]="{'playing': (section['mainAudio'] == curSrc && !_audio.paused) }" (click)="playClick(section['mainAudio'])">
+                <div class="playButton" [ngClass]="{'playing': (section['audioPath'] == curSrc && !_audio.paused) }" (click)="playClick(section['audioPath'])">
                     <ion-icon name="volume-up"></ion-icon>
                     <ion-avatar item-left><img src="{{course.headImg}}"></ion-avatar>
                     <span class="duration" *ngIf="durationList" >{{durationList[sectionIndex]}}</span>
                 </div>
                
-               <div class="audioUnit">
+               <div class="audioUnit" *ngIf="section['audioContent']" >
                    <ion-list no-lines>
                        <ion-item *ngFor="let item of section['audioContent']" (click)="playClick(item['audioSrc'])" >
                            <i class="soundImg" [ngClass]="{'soundImg1': (item['audioSrc'] == curSrc && !_audio.paused) }"></i> {{item['content']}}
@@ -35,5 +35,5 @@
             </ion-item>
         </ion-card-content>
     </ion-card>
-    <!--<audio id="audio" src={{curSrc}} (ended)="end()" autoplay=false ></audio>-->
+    <button ion-button round (touchstart)="recodStart($event)" (touchend)="recordEnd($event)" class="recordBtn"><ion-icon name="ios-mic"></ion-icon>{{recordBtnWord}}</button>
 </ion-content>
