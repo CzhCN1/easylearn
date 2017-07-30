@@ -6,4 +6,7 @@ testWelcome {
     ion-row {
         text-align: center;
     }
+    ion-grid,ion-row {
+        height: 100%;
+    }
 }

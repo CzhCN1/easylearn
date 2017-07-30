@@ -23,7 +23,12 @@ export class Introduction {
         public navParams: NavParams,
         public ajax: AjaxService
     ) {
-        this.courseType = "demo";
+        let courseType = navParams.get('courseType');
+        this.courseType = "noBase";
+        console.log(courseType);
+        if(courseType){
+            this.courseType = courseType;
+        }
         this.demoCourses = [];
         this.noBaseCourses = [];
         this.tinyBaseCourses = [];

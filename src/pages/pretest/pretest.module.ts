@@ -1,8 +1,6 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { IonicAudioModule } from 'ionic-audio';
-
 import { Pretest } from './pretest.component';
 import { TestWelcome } from './testWelcome.component';
 import { Question } from './question.component';
@@ -15,7 +13,7 @@ import { TestResult } from './testResult.component';
     TestResult,
     Pretest
   ],
-  imports: [IonicModule.forRoot(Pretest),IonicAudioModule.forRoot()],
+  imports: [IonicModule.forRoot(TestWelcome)],
   bootstrap: [IonicApp],
   entryComponents: [
     TestWelcome,

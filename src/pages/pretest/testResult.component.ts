@@ -1,6 +1,8 @@
 import { Component,OnInit  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Introduction } from '../introduction/introduction.component';
+
 @Component({
     selector: 'testResult',
     templateUrl: 'testResult.component.html'
@@ -35,5 +37,17 @@ export class TestResult implements OnInit{
             }    
         }
         return count;
+    }
+
+    gotoDemo(){
+        this.navCtrl.push(Introduction);
+    }
+
+    gotoCourse(){
+        if(this.score >= 8){
+            this.navCtrl.push(Introduction,{courseType:"tinyBase"});
+        }else{
+            this.navCtrl.push(Introduction,{courseType:"noBase"});
+        }
     }
 }

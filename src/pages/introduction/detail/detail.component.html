@@ -35,15 +35,26 @@
         </ion-row>
     </ion-card>
 
-    <ion-card>
+    <ion-card *ngIf="isBuy">
         <ion-list inset>
             <ion-list-header>
                 <h1>课程列表</h1>
             </ion-list-header>
             <button ion-item *ngFor="let item of items let i = index" (click)="itemSelected(item)">
-                <span class="sectionNum">第{{item.chapterNum}}节</span>{{ item.chapterTitle }}
+                <span class="sectionNum">第{{i+1}}节</span>{{ item.chapterTitle }}
             </button>
         </ion-list>
     </ion-card>
     
+    <ion-card *ngIf="!isBuy">
+        <ion-list inset>
+            <ion-list-header>
+                <h1>您还没有买这门课程</h1>
+            </ion-list-header>
+            <button ion-item (click)="buyCourse()">
+               点击购买课程！
+            </button>
+        </ion-list>
+    </ion-card>
+
 </ion-content>

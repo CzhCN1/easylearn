@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="grid-basic-page">
-    <ion-slides pager (ionSlideWillChange)="slideChange()">
+    <ion-slides #slides pager (ionSlideWillChange)="slideChange()">
 
         <!--单词题-->
         <ion-slide *ngFor="let question of wordQuestions let i = index">
@@ -37,6 +37,8 @@
                     <ion-radio value="D"></ion-radio>
                 </ion-item>
             </ion-list>
+
+            <button ion-button round (click)="gotoRight()">下一题</button>
         </ion-slide>
 
         <!--听力题-->
@@ -73,6 +75,7 @@
                     <ion-radio value="D"></ion-radio>
                 </ion-item>
             </ion-list>
+            <button ion-button round (click)="gotoRight()">下一题</button>
         </ion-slide>
         <!--提交答案-->
         <ion-slide>

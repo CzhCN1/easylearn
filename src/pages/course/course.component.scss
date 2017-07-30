@@ -5,7 +5,9 @@ course {
     h1 {
         color: rgb(64, 187, 219)
     }
-
+    h1.previous {
+        cursor: pointer;
+    }
     .playButton {
         background-color: rgb(64, 187, 219);
         width: 10rem;
@@ -34,6 +36,17 @@ course {
             color: #FFF;
             vertical-align: top;
             text-indent: 1em;
+        }
+
+        i.redPoint {
+            display:block;
+            background:#f00;
+            border-radius:50%;
+            width:7px;
+            height:7px;
+            top:0px;
+            right:-10px;
+            position:absolute;
         }
     }
     .playButton:after {
@@ -75,6 +88,10 @@ course {
             background-repeat: no-repeat;
             background-position: 7px -2px;
         }
+
+        ion-label {
+            white-space: normal !important;
+        }
     }
 
     .playing {
@@ -83,4 +100,12 @@ course {
             visibility: visible;
         }
     }
+
+    .recordBtn {
+        display: block;
+        width: 15rem;
+        margin: 3rem auto;
+    }
+
+    
 }

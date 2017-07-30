@@ -8,9 +8,10 @@
 
     <ion-toolbar no-border-top>
         <ion-segment [(ngModel)]="courseType">
-            <ion-segment-button value="demo">
+  <!--          <ion-segment-button value="demo">
                 试听课程
-            </ion-segment-button>
+            </ion-segment-button>  
+  -->
             <ion-segment-button value="noBase">
                 零基础
             </ion-segment-button>
@@ -23,41 +24,6 @@
     <ion-searchbar (input)="getItems($event)" color="primary" placeholder="请输入课程的关键字..."></ion-searchbar>
 
     <div [ngSwitch]="courseType">
-        <!--试听课-->
-        <div *ngSwitchCase="'demo'">
-            <ion-card *ngFor="let course of demoCourses let i = index">
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="{{course.headImg}}">
-                    </ion-avatar>
-                    <h2>{{course.courseTitle}}</h2>
-                    <p>{{course.courseSubtitle}}</p>
-                </ion-item>
-
-                <img src="{{course.courseImg}}">
-
-                <ion-card-content>
-                    <p>{{course.courseDescription}}</p>
-                </ion-card-content>
-
-                <ion-row>
-                    <ion-col align-self-center text-center>
-                        <ion-note>
-                            {{course.date}}
-                        </ion-note>
-                    </ion-col>
-                    <ion-col align-self-center text-center>
-                        <ion-note color="primary">
-                            <ion-icon name="ribbon"></ion-icon>
-                            评分：9.9/10
-                        </ion-note>
-                    </ion-col>
-                    <ion-col align-self-center text-center>
-                        <button ion-button clear color="light" color="primary" (click)="gotoDetail(i,'demo')"> >>查看详细 </button>
-                    </ion-col>
-                </ion-row>
-            </ion-card>
-        </div>
         <!--零基础-->
         <div *ngSwitchCase="'noBase'">
             <ion-card *ngFor="let course of noBaseCourses let i = index">

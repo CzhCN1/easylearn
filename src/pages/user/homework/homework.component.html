@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>我的作业</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="grid-basic-page">  
+    <ion-card>
+        <ion-list inset>
+            <ion-list-header>
+                <h1>我的作业</h1>
+            </ion-list-header>
+            <button ion-item *ngFor="let item of homeworks let i = index" (click)="itemSelected(item)">
+                <span class="sectionNum">{{item.date}}</span>
+                零基础课程 零基础DAY1
+            </button>
+        </ion-list>
+    </ion-card>
+</ion-content>

@@ -8,9 +8,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { Pretest } from '../pages/pretest/pretest.component';
-// import { Question } from '../pages/pretest/question.component';
-// import { TestResult } from '../pages/pretest/testResult.component';
+import { TestWelcome } from '../pages/pretest/testWelcome.component';
+import { UserInfo } from '../pages/user/userInfo/userInfo.component';
+import { Bonus } from '../pages/user/bonus/bonus.component';
+import { Introduction } from '../pages/introduction/introduction.component';
+import { Homework } from '../pages/user/homework/homework.component';
+import { Course } from '../pages/course/course.component';
 
 import { PretestModule } from '../pages/pretest/pretest.module';
 import { IntroductionModule } from '../pages/introduction/introduction.module';
@@ -29,7 +32,12 @@ import { UserModule } from '../pages/user/user.module';
     }, {
       links: [
         { component: HomePage, name: 'Home', segment: 'home'},
-        { component: Pretest, name: 'Pretest', segment: 'pretest', defaultHistory: [HomePage]}
+        { component: TestWelcome, name: 'Pretest', segment: 'pretest'},
+        { component: UserInfo, name: 'UserInfo', segment: 'user'},
+        { component: Bonus, name: 'Bonus', segment: 'bonus'},
+        { component: Introduction, name: 'Introduction', segment: 'introduction'},
+        { component: Homework, name: 'Homework', segment: 'homework'},
+        { component: Course, name: 'Chapter', segment: 'chapter/:chapterNum/openId/:openId'}
       ]
     }),
     HttpModule,
