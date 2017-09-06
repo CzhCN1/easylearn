@@ -1,12 +1,23 @@
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
         <ion-title>学员信息</ion-title>
     </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content class="grid-basic-page">
+    <div class="topPart">
+        <ion-item >
+            <ion-avatar item-left>
+                <img src="{{userInfo.headImg}}">
+                <!-- <img src="../assets/img/head.png"> -->
+            </ion-avatar>
+        </ion-item>
+        <p>{{userInfo.nickname}}</p>
+        <p>会员号：{{userInfo.memberId}}</p>
+    </div>
+    
     <ion-card>
-        <ion-item>
+        <!-- <ion-item>
             <ion-avatar item-left>
                 <img src="{{userInfo.headImg}}">
             </ion-avatar>
@@ -15,26 +26,37 @@
 
         <ion-item>
             <h1>会员号：{{userInfo.memberId}}</h1>
+        </ion-item> -->
+        <ion-item>
+            <h1><ion-icon name="ios-person-add-outline"></ion-icon>我的邀请码：{{userInfo.memberId}}</h1>
         </ion-item>
 
         <ion-item>
-            <h1>所学课程：</h1>
+            <h1><ion-icon name="ios-trophy-outline"></ion-icon>我的积分：{{ownBonus.bonus}}</h1>
+        </ion-item>
+
+        <ion-item>
+            <h1><ion-icon name="ios-book-outline"></ion-icon>所学课程：</h1>
             <ion-list >
                 <!--<ion-list-header> 所学课程： </ion-list-header> -->
-                <button ion-item *ngFor="let item of this.ownCourse" (click)="itemSelected(item)">
-                    {{item.courseName}}
-                </button> 
+                 <button ion-item *ngFor="let item of this.ownCourse let itemIdx = index" (click)="itemSelected(item)">
+                    {{item.courseTitle}}
+                    <span class="expiryTime">{{expiryTime[itemIdx]}}</span>
+                </button>  
             </ion-list>
         </ion-item>
-
-        <ion-item>
-            <h1>课程有效期：2018-12-31</h1>
-        </ion-item>
-
-        <ion-item>
-            <h1>我的积分：{{ownBonus.bonus}}</h1>
-            <button ion-button (click)="gotoBonus()">积分商城</button>
-        </ion-item>
+        
     </ion-card>
 
+    <ion-card>
+        <ion-list inset>
+            <button ion-item (click)="gotoBonus()">
+                积分商城
+            </button>
+            <button ion-item (click)="goHomework()">
+                我的作业
+            </button>
+        </ion-list>
+    </ion-card>
+    
 </ion-content>

@@ -13,6 +13,7 @@ declare var wx: any;
 
 export class Homework {
     homeworks: any;
+    
 
     constructor(
         public navCtrl: NavController,
@@ -28,7 +29,6 @@ export class Homework {
                 item["date"] = self.timeFormat(item["timetamp"]);
             }
             self.homeworks = data;
-        
         });
     }
 

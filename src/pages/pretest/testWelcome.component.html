@@ -1,22 +1,28 @@
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
         <ion-title>课前测试</ion-title>
     </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content class="grid-basic-page">
     <ion-grid>
         <ion-row align-items-center>
-            <ion-col col-10 offset-1>
-                <h2>欢迎参加说吧课前水平测试</h2>
-                <p>测试内容包括以下两部分:</p>
-                <p>词汇题: 从四个选项中选出正确的单词释义。(共6道)</p>
-                <p>语音题: 根据听力从四个选项中选出正确的答案。(共4道)</p>
-                <p>为了确保对水平判断的准确性，请独立完成题目。</p>
-                <p>准备好我们就开始吧！</p>
+            <ion-col col-12>
+                <!-- <div class="circle">
+                    <p>说吧</p>
+                    <p>JUST TALK</p>
+                </div> -->
+                <div class="logo"></div>
             </ion-col>
-            <ion-col>
-                <button ion-button round (click)="startTest()">开始测试！</button>
+            <ion-col col-10 offset-1>
+                <h3>欢迎参加说吧学前测试!</h3>
+                <p>词汇题: 选出正确的单词释义</p>
+                <p>语音题: 听语音选出正确答案</p>
+                <p>为了结果的准确性，请独立完成哦！</p>
+                <h3>准备好了我们就开始吧！</h3>
+            </ion-col>
+            <ion-col col-12>
+                <button ion-button round (click)="startTest()">开始测试</button>
             </ion-col>
         </ion-row>
     </ion-grid>

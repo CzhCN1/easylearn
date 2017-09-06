@@ -6,6 +6,8 @@ import { Buy } from './buy/buy.component';
 
 import { AjaxService } from '../../services/ajax.service';
 
+declare var wx: any;
+
 @Component({
     selector: 'introduction',
     templateUrl: 'introduction.component.html',
@@ -33,6 +35,8 @@ export class Introduction {
         this.noBaseCourses = [];
         this.tinyBaseCourses = [];
         this.initializeItems();
+
+        wx.showAllNonBaseMenuItem();
     }
 
     initializeItems() {
@@ -93,8 +97,18 @@ export class Introduction {
     }
 
     buyCourse() {
+        var courseType = 0;
+        var course = {};
+        if(this.courseType == "noBase"){
+            courseType = 0;
+            course = this.noBaseCourses[0];
+        }else if(this.courseType == "tinyBase"){
+            courseType = 1;
+            course = this.tinyBaseCourses[0];
+        }
         this.navCtrl.push(Buy, {
-            course: this.courseType
+            courseType : courseType,
+            course : course
         });
     }
 }

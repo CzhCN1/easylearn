@@ -5,7 +5,7 @@ import { Course } from '../../course/course.component';
 import { Buy } from './../buy/buy.component';
 
 import { AjaxService } from '../../../services/ajax.service';
-
+declare var wx: any;
 @Component({
     selector: 'detail',
     templateUrl: 'detail.component.html',
@@ -15,6 +15,7 @@ export class Detail {
     course: Object;
     items: any;
     isBuy: Boolean = true;
+    courseNum: any;
 
     constructor(
         public navCtrl: NavController,
@@ -23,7 +24,55 @@ export class Detail {
         public alertCtrl: AlertController
     ) {
         this.course = navParams.get('course');
+        this.courseNum = navParams.get('courseNum');
         console.log(this.course);
+        if(this.course){
+            this.getCourseList();
+        }else if(this.courseNum){
+            let self = this;
+            self.ajax.get('/getIntroduction?courseNum='+this.courseNum).then(data=>{
+                self.course = data;
+                console.log(self.course);
+                self.getCourseList.apply(self);
+            });
+        }
+
+        setTimeout(function(){
+            wx.hideAllNonBaseMenuItem();
+        },3000);
+        // wx.hideMenuItems({
+        //     menuList: [
+        //       "menuItem:share:appMessage",
+        //       "menuItem:share:timeline",
+        //       "menuItem:share:qq",
+        //       "menuItem:share:weiboApp",
+        //       "menuItem:share:facebook",
+        //       "menuItem:share:QZone",
+        //       "menuItem:copyUrl",
+        //       "menuItem:originPage",
+        //       "menuItem:openWithQQBrowser",
+        //       "menuItem:openWithSafari"
+        //     ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        // });
+    }
+
+    itemSelected(item) {
+        console.log(item);
+        this.navCtrl.push(Course, {
+            item: item,
+            course: this.course
+        });
+    }
+
+    buyCourse() {
+        console.log(this.course);
+        this.navCtrl.push(Buy, {
+            course: this.course,
+            courseType: this.course["courseType"]
+        });
+    }
+
+    getCourseList(){
         this.ajax.get('/getCourseList?courseNum='+this.course["courseNum"]).then(data=>{
             console.log(data);
             //用户没有买这门课程
@@ -41,20 +90,6 @@ export class Detail {
                     alert.present();
                 }
             }
-        });
-    }
-
-    itemSelected(item) {
-        console.log(item);
-        this.navCtrl.push(Course, {
-            item: item,
-            course: this.course
-        });
-    }
-
-    buyCourse() {
-        this.navCtrl.push(Buy, {
-            course: this.course["courseType"]
         });
     }
 }

@@ -1,8 +1,8 @@
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
         <ion-title>我的积分</ion-title>
     </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content class="grid-basic-page">
 
@@ -23,8 +23,10 @@
 
     <div [ngSwitch]="currentChoice">
         <div *ngSwitchCase = "'earn'">
-            <h3>每日任务</h3>
-
+            <div class="earnTitle">
+                <h3>每日任务</h3>
+                <h3>每月任务</h3>
+            </div>
             <ion-grid>
                 <ion-row align-items-top>
                     <ion-col col-3 offset-2>
@@ -36,10 +38,10 @@
                     </ion-col>
                     <ion-col col-3 offset-2>
                         <div class="dailyIcon">
-                            <ion-icon name="md-share"></ion-icon>
+                            <ion-icon name="md-trending-up"></ion-icon>
                         </div>
-                        <p class="bonus">+10积分</p>
-                        <p>分享至朋友圈</p>
+                        <p class="bonus">+100积分</p>
+                        <p>当月累计提交作业22次</p>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -47,13 +49,6 @@
             <h3>其他任务</h3>
 
             <ion-list inset>
-                <ion-item>
-                    <ion-icon name="ios-calendar-outline"></ion-icon>
-                    当月累计提交作业22次
-                    <div class="rightBonus bonus">
-                        +100积分
-                    </div>
-                </ion-item>
                 <ion-item>
                     <ion-icon name="md-person-add"></ion-icon>
                     成功邀请一位好友

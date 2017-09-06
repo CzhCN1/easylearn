@@ -3,39 +3,47 @@ course {
         background-color: rgb(248, 248, 248);
     }
     h1 {
-        color: rgb(64, 187, 219)
+        color: #75d29d;
     }
     h1.previous {
         cursor: pointer;
     }
     .playButton {
-        background-color: rgb(64, 187, 219);
-        width: 10rem;
-        height: 3rem;
+        background-color: #75d29d;
+        width: 13rem;
+        height: 4rem;
+        line-height: 4rem;
         border-radius: 5px;
-        margin: 2rem 5rem;
+        margin: 2rem 6rem;
         position: relative;
 
         ion-icon {
             color: #FFF;
-            font-size: 2.0em;
-            text-indent: 1.3rem;
+            font-size: 3em;
+            text-indent: 1rem;
             visibility: hidden;
+            line-height: 4rem;
         }
         
         ion-avatar {
             position: absolute;
-            top: -0.7rem;
-            left: -5rem;
+            top: -0.5rem;
+            left: -6rem;
+        }
+
+        ion-avatar img {
+            width: 44px !important;
+            height: 44px !important;
         }
 
         .duration {
             display: inline-block;
-            height: 3rem;
-            line-height: 3rem;
+            height: 4rem;
+            line-height: 4rem;
             color: #FFF;
             vertical-align: top;
-            text-indent: 1em;
+            text-indent: 1.2em;
+            font-size: 2.5rem;
         }
 
         i.redPoint {
@@ -44,8 +52,8 @@ course {
             border-radius:50%;
             width:7px;
             height:7px;
-            top:0px;
-            right:-10px;
+            top:5px;
+            right:-15px;
             position:absolute;
         }
     }
@@ -54,15 +62,16 @@ course {
         width: 0;
         height: 0;
         position: absolute;
-        top: 0.5rem;
-        left: -1.7rem;
+        top: 1rem;
+        left: -1.9rem;
         border: solid 1rem;
-        border-color: transparent rgb(64, 187, 219) transparent transparent ;
+        border-color: transparent #75d29d transparent transparent ;
         font-size: 0;
     }
 
     .audioUnit {
-        border: 2px solid #488aff;
+        border: 3px solid rgb(143,168,67);
+        position: relative;
 
         .soundImg {
             display: inline-block;
@@ -92,6 +101,25 @@ course {
         ion-label {
             white-space: normal !important;
         }
+
+        .triangle {
+            width:0;
+            height:0;
+            border-width:50px 50px 0 0;
+            border-style:solid;
+            border-color:transparent rgb(143,168,67) transparent transparent;
+            position:absolute;
+            bottom: -1px;
+            right: -2px;
+
+            p {
+                position: absolute;
+                color: #FFF;
+                top: -22px;
+                right: -48px;
+                font-size: 16px;
+            }
+        }
     }
 
     .playing {
@@ -107,5 +135,7 @@ course {
         margin: 3rem auto;
     }
 
-    
+    ion-fab[bottom][edge] {
+        bottom: 0px !important;
+    }
 }

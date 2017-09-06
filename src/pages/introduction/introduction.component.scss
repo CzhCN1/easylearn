@@ -11,4 +11,15 @@ introduction {
     ion-segment {
         padding-top: 8px!important;
     }
+
+    #buyBtn {
+        position: fixed;
+        bottom: 10px;
+        left: 5%;
+        width: 90%;
+    }
+
+    .wrap {
+        margin-bottom: 100px;
+    }
 }

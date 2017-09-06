@@ -36,7 +36,7 @@ bonus {
         
         .dailyIcon{
             text-align: center;
-            background: #60aaff;
+            background: #75d29d;
             width: 6rem;
             height: 6rem;
             border-radius: 2.5rem;
@@ -63,6 +63,16 @@ bonus {
         }
         .rightBonus {
             float: right;
+        }
+    }
+
+    .earnTitle {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        
+        h3 {
+            flex-grow: 1;
         }
     }
 }

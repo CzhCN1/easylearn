@@ -23,10 +23,14 @@ buy {
             margin-bottom: 5px !important;
         }
     }
+    ion-list-header h2{
+        color: #75d29d;
+    }
     .price {
         color: #f53d3d;
         font-size: 2rem;
         font-weight: bold;
+        text-indent: 5rem;
     }
     .payBtn {
         text-align: center;

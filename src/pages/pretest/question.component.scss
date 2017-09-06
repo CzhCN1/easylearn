@@ -12,6 +12,11 @@ question {
         margin-top: -5px !important;
         padding: 0 1em !important;
     }
+
+    ion-list ion-label.label{
+        white-space: normal;
+    }
+
     .scroll-content,ion-list ion-item {
         background-color: rgb(248, 248, 248) !important;
     }
@@ -33,5 +38,8 @@ question {
         padding: 0 !important;
         margin: 0 !important;
         font-size: 3.2em !important;
+    }
+    .swiper-pagination-bullet-active {
+        background: #75d29d !important;
     }
 }

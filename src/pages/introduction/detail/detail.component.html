@@ -1,11 +1,11 @@
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
         <ion-title>课程介绍</ion-title>
     </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content class="grid-basic-page">
-    <ion-card>
+    <ion-card *ngIf="course">
         <ion-item>
             <ion-avatar item-left>
                 <img src="{{course.headImg}}">
@@ -14,7 +14,7 @@
             <p>{{course.courseSubtitle}}</p>
         </ion-item>
 
-        <img src="{{course.courseImg}}">
+        <img src="{{course.subImg}}">
 
         <ion-card-content>
             <p>{{course.courseDescription}}</p>

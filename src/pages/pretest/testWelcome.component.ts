@@ -4,7 +4,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Question } from './question.component';
 
 import { AjaxService } from '../../services/ajax.service';
-
+declare var wx: any;
 @Component({
     selector: 'testWelcome',
     templateUrl: 'testWelcome.component.html',
@@ -25,6 +25,7 @@ export class TestWelcome {
         this.wordQuestions = [];
         this.listenQuestions = [];
         this.answer = [];
+        wx.showAllNonBaseMenuItem();
     }
 
     startTest() {

@@ -1,8 +1,8 @@
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
         <ion-title>购买课程</ion-title>
     </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content class="grid-basic-page">
     <ion-card>
@@ -12,27 +12,33 @@
 
         <ion-item ion-item>
             <ion-avatar item-left>
-                <img src="assets/img/head.png">
+                <img src="{{course.headImg}}">
             </ion-avatar>
-            <h2>[说乎] 零基础课程</h2>
-            <p>Jinx老师——前新东方首席口语名师</p>
+            <h2>{{course.courseTitle}}</h2>
+            <p>{{course.courseSubtitle}}</p>
         </ion-item>
         <ion-card-content>
-            <p>Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师Jinx老师——前新东方首席口语名师</p>
+            <p>{{course.courseDescription}}</p>
         </ion-card-content>
+        
+        <ion-list radio-group [(ngModel)]="courseIdx">
+            <ion-list-header>
+                <h2>请选择下列要购买的系列课程：</h2>
+            </ion-list-header>
 
-        <ion-item>
-            <span>有效期12个月：</span>
-            <span class="price">￥128</span>
-        </ion-item>
+            <ion-item *ngFor="let item of sellList let i = index">
+                <ion-label>{{item.courseName}}：<span class="price">￥{{item.coursePrice}}</span></ion-label>
+                <ion-radio checked="false" value="{{i}}"></ion-radio>
+            </ion-item>
+        </ion-list>
 
         <ion-item>
             <ion-label>邀请码：</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="inviteCode"></ion-input>
         </ion-item>
 
         <ion-item class="payBtn">
-            <button ion-button color="secondary">立即支付</button>
+            <button ion-button color="secondary" (click)="buyCourse()">立即支付</button>
         </ion-item>
     </ion-card>
 
